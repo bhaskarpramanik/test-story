@@ -28,7 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -s settings.xml -B -P ci verify #-Dspring.profiles.active=${{ vars.SPRING_PROFILES_ACTIVE }}
+      run: mvn -B -P ci verify #-Dspring.profiles.active=${{ vars.SPRING_PROFILES_ACTIVE }}
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     # - name: Update dependency graph
