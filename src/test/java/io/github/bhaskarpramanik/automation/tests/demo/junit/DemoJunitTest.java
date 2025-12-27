@@ -1,4 +1,4 @@
-package io.github.bhaskarpramanik.automation.tests;
+package io.github.bhaskarpramanik.automation.tests.demo.junit;
 
 import io.github.bhaskarpramanik.automation.base.config.junit.JunitConfiguration;
 import org.assertj.core.api.Assertions;
