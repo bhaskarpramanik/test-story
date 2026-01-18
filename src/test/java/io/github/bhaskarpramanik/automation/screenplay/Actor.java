@@ -1,17 +1,20 @@
 package io.github.bhaskarpramanik.automation.screenplay;
 
 import io.github.bhaskarpramanik.automation.screenplay.abilities.Memorize;
-import io.github.bhaskarpramanik.automation.screenplay.actions.UsingCapability;
-import io.github.bhaskarpramanik.automation.screenplay.actions.UsingMemory;
-import io.github.bhaskarpramanik.automation.screenplay.capabilities.Capability;
+import io.github.bhaskarpramanik.automation.screenplay.actions.*;
+import io.github.bhaskarpramanik.automation.screenplay.capabilities.*;
 import io.github.bhaskarpramanik.automation.screenplay.exceptions.NoSuchAbilityException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.function.Failable;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.ObjectAssert;
 
 @SuppressWarnings("all")
-public class Actor implements UsingCapability, UsingMemory {
+public class Actor implements UsingCapability, UsingMemory, Action, Asserts {
 
   private final Map<Class, Capability> capabilities;
 
@@ -35,5 +38,20 @@ public class Actor implements UsingCapability, UsingMemory {
 
   public Memorize usingItsMemory() {
     return this.usingCapabilityTo(Memorize.class);
+  }
+
+  @Override
+  public <T> T queries(Query<T> query) {
+    return query.by(this);
+  }
+
+  @Override
+  public void directs(Command... commands) {
+    Failable.stream(Arrays.asList(commands)).forEach(command -> command.as(this));
+  }
+
+  @Override
+  public <T> ObjectAssert<T> assertsThat(Query<T> query) {
+    return Assertions.assertThat(query.by(this));
   }
 }
