@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("all")
-class ScreenPlayMemoryTest {
+class MemoryTest {
 
   private final Actor user;
 

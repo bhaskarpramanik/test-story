@@ -4,6 +4,7 @@ import io.github.bhaskarpramanik.automation.screenplay.Actor;
 
 @FunctionalInterface
 public interface Query<T> {
-  //  A query that can be made by the actor to the system
+  // Represents queries made to obtain the state of a system
+  // e.g. Http actions like GET, HEAD etc.
   T by(Actor actor);
 }
